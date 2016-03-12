@@ -11,7 +11,7 @@ module Model
 
   module ModelBase
     def self.config=(file)
-      @@conf = YAML.load_file(file)
+      @@conf = File.exist?(file) ? YAML.load_file(file) : ENV
       @@path = PATH % [@@conf['database'], @@conf['collection']]
     end
 
