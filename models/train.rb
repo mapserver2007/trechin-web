@@ -57,21 +57,4 @@ class Train
 
     response
   end
-
-  def self.commute
-    response = []
-    begin
-      commute_rule = YAML.load_file(File.dirname(__FILE__) + "/../config/commute_rule.yml")
-      get[0]["data"].each do |id, map|
-        if commute_rule.include? id.to_i
-          response << map
-        end
-      end
-    rescue => e
-      response << {:error => e.message}
-    end
-
-    response
-  end
-
 end
